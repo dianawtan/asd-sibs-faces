@@ -1,0 +1,14 @@
+"0","library(ggplot2)"
+"2","Registered S3 method overwritten by 'dplyr':
+  method           from
+  print.rowwise_df     
+"
+"2","Need help? Try Stackoverflow:
+https://stackoverflow.com/tags/ggplot2.
+"
+"0","library(here)"
+"2","here() starts at C:/Users/Diana/Google Drive/00. Research/01. Ongoing/Under_submission/ASD_sibs_faceMasc/statistical_analyses/sibs_faces/data_and_codes_26.08.19
+"
+"0","library(viridis)"
+"2","Loading required package: viridisLite
+"

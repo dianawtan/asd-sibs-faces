@@ -1,0 +1,47 @@
+"0",""
+"0","library(psych)"
+"0","library(tidyverse)"
+"2","Registered S3 method overwritten by 'dplyr':
+  method           from
+  print.rowwise_df     
+"
+"2","Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+"
+"2","[37m-- [1mAttaching packages[22m --------------------------------------- tidyverse 1.2.1 --[39m
+"
+"2","[37m[32mv[37m [34mggplot2[37m 3.2.0     [32mv[37m [34mpurrr  [37m 0.3.2
+[32mv[37m [34mtibble [37m 2.1.3     [32mv[37m [34mdplyr  [37m 0.8.3
+[32mv[37m [34mtidyr  [37m 0.8.3     [32mv[37m [34mstringr[37m 1.4.0
+[32mv[37m [34mreadr  [37m 1.3.1     [32mv[37m [34mforcats[37m 0.4.0[39m
+"
+"2","[37m-- [1mConflicts[22m ------------------------------------------ tidyverse_conflicts() --
+[31mx[37m [34mggplot2[37m::[32m%+%()[37m   masks [34mpsych[37m::%+%()
+[31mx[37m [34mggplot2[37m::[32malpha()[37m masks [34mpsych[37m::alpha()
+[31mx[37m [34mdplyr[37m::[32mfilter()[37m  masks [34mstats[37m::filter()
+[31mx[37m [34mdplyr[37m::[32mlag()[37m     masks [34mstats[37m::lag()[39m
+"
+"0","library(DescTools)"
+"2","
+Attaching package: ‘DescTools’
+
+"
+"2","The following objects are masked from ‘package:psych’:
+
+    AUC, ICC, SD
+
+"
+"0","library(effsize)"
+"2","
+Attaching package: ‘effsize’
+
+"
+"2","The following object is masked from ‘package:psych’:
+
+    cohen.d
+
+"
+"0","library(here)"
+"2","here() starts at C:/Users/Diana/Google Drive/00. Research/01. Ongoing/Under_submission/ASD_sibs_faceMasc/statistical_analyses/sibs_faces/data_and_codes_26.08.19
+"

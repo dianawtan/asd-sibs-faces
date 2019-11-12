@@ -1,0 +1,151 @@
+---
+title: "01 Generality of Algorithm"
+author: "Diana Tan"
+date: "8/23/2019"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+
+library(psych)
+library(DescTools)
+library(effsize)
+library(here)
+
+```
+
+```{r data import}
+
+load(here("data","alg_valid.Rda"))
+
+# run this line for data dictionary 
+attributes(alg_valid)
+
+```
+
+
+---PRELIM ANALYSES---
+```{r data visualisation}
+ggplot(data = alg_valid, mapping = aes(x = `G_ex-ex`, colour = sex)) +
+  geom_histogram (binwidth = 2.0)
+
+ggplot(data = alg_valid, mapping = aes(x = `G_tr-g`, colour = sex)) +
+  geom_histogram (binwidth = 1.0)
+  
+ggplot(data = alg_valid, mapping = aes(x = `G_ft-ft`, colour = sex)) +
+  geom_histogram (binwidth = 2.0)
+
+ggplot(data = alg_valid, mapping = aes(x = `G_ex-ch`, colour = sex)) +
+  geom_histogram (binwidth = 1.0)
+
+ggplot(data = alg_valid, mapping = aes(x = `G_sn-prn`, colour = sex)) +
+  geom_histogram (binwidth = 1.0)
+
+ggplot(data = alg_valid, mapping = aes(x = `G_n-sn`, colour = sex)) +
+  geom_histogram (binwidth = 2.0)
+
+ggplot(data = alg_valid, mapping = aes(x = `G_sn-sto`, colour = sex)) +
+  geom_histogram (binwidth = 2.0)
+
+ggplot(data = alg_valid, mapping = aes(x = `G_n-prn`, colour = sex)) +
+  geom_histogram (binwidth = 2.0)
+
+ggplot(data = alg_valid, mapping = aes(x = `L_sbal-sn`, colour = sex)) +
+  geom_histogram (binwidth = 0.5)
+
+ggplot(data = alg_valid, mapping = aes(x = `L_n-sn`, colour = sex)) +
+  geom_histogram (binwidth = 0.5)
+
+ggplot(data = alg_valid, mapping = aes(x = `L_sn-sto`, colour = sex)) +
+  geom_histogram (binwidth = 0.5)
+
+ggplot(data = alg_valid, mapping = aes(x = Area, colour = sex)) +
+  geom_histogram (binwidth = 500)
+```
+
+```{r assumptions testing}
+shapiro.test(alg_valid$`L_sbal-sn`)
+shapiro.test(alg_valid$`L_n-sn`)
+shapiro.test(alg_valid$`L_sn-sto`)
+
+
+shapiro.test(alg_valid$`G_ex-ex`)
+shapiro.test(alg_valid$`G_tr-g`)
+shapiro.test(alg_valid$`G_ft-ft`) 
+shapiro.test(alg_valid$`G_ex-ch`)
+shapiro.test(alg_valid$`G_sn-prn`) #not normally distributed
+shapiro.test(alg_valid$`G_n-sn`)
+shapiro.test(alg_valid$`G_sn-sto`) 
+shapiro.test(alg_valid$`G_n-prn`) 
+
+shapiro.test(alg_valid$Area) #not normally distributed
+
+```
+
+---DISTANCE COMPARISONS BETWEEN CONTROL BOYS AND GIRLS---
+```{r analyses}
+
+describeBy(alg_valid$age_at_scan, group = alg_valid$sex)
+t.test(alg_valid$age_at_scan ~ alg_valid$sex)
+
+## Values reported in Table 1 ##
+
+describeBy(alg_valid$Area, group = alg_valid$sex, IQR = TRUE)
+wilcox.test(alg_valid$Area ~ alg_valid$sex)
+Area_wilcox <- wilcox.test(alg_valid$Area ~ alg_valid$sex)
+Area_z <- qnorm(Area_wilcox$p.value/2)
+Area_effsize <- abs(Area_z)/sqrt(80)
+#r = .17; d = .35 (see https://www.psychometrica.de/effect_size.html)
+cohen.d.ci(d = .35, n = 80, n1 = 40, n2 = 40, alpha = .05)
+
+describeBy(alg_valid$`L_sbal-sn`, group = alg_valid$sex)
+t.test(alg_valid$`L_sbal-sn` ~ alg_valid$sex)
+cohen.d(alg_valid$`L_sbal-sn` ~ alg_valid$sex)
+
+describeBy(alg_valid$`L_n-sn`, group = alg_valid$sex)
+t.test(alg_valid$`L_n-sn` ~ alg_valid$sex)
+cohen.d(alg_valid$`L_n-sn` ~ alg_valid$sex)
+
+describeBy(alg_valid$`L_sn-sto`, group = alg_valid$sex)
+t.test(alg_valid$`L_sn-sto` ~ alg_valid$sex)
+cohen.d(alg_valid$`L_sn-sto` ~ alg_valid$sex)
+
+describeBy(alg_valid$`G_ex-ex`, group = alg_valid$sex)
+t.test(alg_valid$`G_ex-ex` ~ alg_valid$sex)
+cohen.d(alg_valid$`G_ex-ex` ~ alg_valid$sex)
+
+describeBy(alg_valid$`G_tr-g`, group = alg_valid$sex)
+t.test(alg_valid$`G_tr-g` ~ alg_valid$sex)
+cohen.d(alg_valid$`G_tr-g` ~ alg_valid$sex)
+
+describeBy(alg_valid$`G_ft-ft`, group = alg_valid$sex)
+t.test(alg_valid$`G_ft-ft` ~ alg_valid$sex)
+cohen.d(alg_valid$`G_ft-ft` ~ alg_valid$sex)
+
+describeBy(alg_valid$`G_ex-ch`, group = alg_valid$sex)
+t.test(alg_valid$`G_ex-ch` ~ alg_valid$sex)
+cohen.d(alg_valid$`G_ex-ch` ~ alg_valid$sex)
+
+describeBy(alg_valid$`G_sn-prn`, group = alg_valid$sex, IQR = TRUE)
+wilcox.test(alg_valid$`G_sn-prn` ~ alg_valid$sex)
+Gsnprn_wilcox <- wilcox.test(alg_valid$`G_sn-prn` ~ alg_valid$sex)
+Gsnprn_z <- qnorm(Gsnprn_wilcox$p.value/2)
+Gnprn_effsize <- abs(Gsnprn_z)/sqrt(80)
+#r = .16; d = .32 (see https://www.psychometrica.de/effect_size.html)
+cohen.d.ci(d = .32, n = 80, n1 = 40, n2 = 40, alpha = .05)
+
+describeBy(alg_valid$`G_n-sn`, group = alg_valid$sex)
+t.test(alg_valid$`G_n-sn` ~ alg_valid$sex)
+cohen.d(alg_valid$`G_n-sn` ~ alg_valid$sex)
+
+describeBy(alg_valid$`G_sn-sto`, group = alg_valid$sex)
+t.test(alg_valid$`G_sn-sto` ~ alg_valid$sex)
+cohen.d(alg_valid$`G_sn-sto` ~ alg_valid$sex)
+
+describeBy(alg_valid$`G_n-prn`, group = alg_valid$sex)
+t.test(alg_valid$`G_n-prn` ~ alg_valid$sex)
+cohen.d(alg_valid$`G_n-prn` ~ alg_valid$sex)
+
+```
+
+

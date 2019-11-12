@@ -1,0 +1,9 @@
+"0","print(figure2)
+"
+"2","Warning in gzfile(file, ""wb"") :"
+"2","
+ "
+"2"," cannot open compressed file 'C:/Users/Diana/Google Drive/00. Research/01. Ongoing/Under_submission/ASD_sibs_faceMasc/statistical_analyses/sibs_faces/data_and_codes_26.08.19/.Rproj.user/shared/notebooks/FA8B1062-03. graphs/1/AFBF1EF2B22009BE/c008n9bcu2gz2_t/3c5f13153bd34027bf98977bce2bf8fc.snapshot', probable reason 'No such file or directory'
+"
+"2","Error in gzfile(file, ""wb"") : cannot open the connection
+"
